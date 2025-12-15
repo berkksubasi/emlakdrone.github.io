@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Open Graph Meta Tags for WhatsApp - MUST BE FIRST -->
+    <meta property="og:title" content="Mersin Gülnar Saray">
+    <meta property="og:description" content="Mersin Gülnar Saray - 20.000.000,00 TRY">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://berkksubasi.github.io/emlakdrone.github.io/share/ilan-1765835864989.html">
+    <meta property="og:site_name" content="Emlak Drone">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="og:image" content="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MzAiIHZpZXdCb3g9IjAgMCAxMjAwIDYzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjMwIiBmaWxsPSIjZmZkMjAwIi8+Cjx0ZXh0IHg9IjYwMCIgeT0iMzE1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMDAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7wn5GgIEVtbGFrIERyb25lPC90ZXh0Pgo8L3N2Zz4K">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Mersin Gülnar Saray">
+    <meta name="twitter:description" content="Mersin Gülnar Saray - 20.000.000,00 TRY">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="description" content="Mersin Gülnar Saray - Mersin Gülnar Saray">
+    <meta name="keywords" content="emlak, arsa, Mersin, Gülnar">
+    <meta name="author" content="Emlak Drone">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mersin Gülnar Saray</title>
+    
+    <!-- Leaflet CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ffd200 0%, #ffed4e 100%);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd200, #ffed4e);
+        }
+        .status-badge {
+            background: #00FF00;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        .location {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+        .location-icon {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        .price-section {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .price-label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .price-amount {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        .details {
+            margin-bottom: 20px;
+        }
+        .detail-row {
+            display: flex;
+            margin-bottom: 8px;
+        }
+        .detail-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            width: 80px;
+        }
+        .detail-value {
+            font-size: 12px;
+            color: #333;
+            font-weight: 500;
+            flex: 1;
+        }
+        .footer {
+            border-top: 1px solid #e9ecef;
+            padding-top: 15px;
+            text-align: center;
+        }
+        .footer-text {
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
+        }
+        .polygon-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #ffd200;
+            display: block;
+        }
+        .polygon-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .polygon-icon {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        .polygon-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .polygon-item {
+            background: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            font-size: 12px;
+            font-weight: 500;
+            color: #333;
+        }
+        .polygon-coordinates {
+            margin-top: 10px;
+            font-size: 10px;
+            color: #666;
+            font-family: monospace;
+            background: #f1f3f4;
+            padding: 8px;
+            border-radius: 6px;
+            word-break: break-all;
+        }
+        .polygon-visualization {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #ffd200;
+        }
+        .leaflet-map {
+            width: 100%;
+            height: 200px;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            background: #f8f9fa;
+        }
+        .polygon-title-visual {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        
+        <div class="status-badge">Satılık</div>
+        
+        <div class="location">
+            <span class="location-icon">📍</span>
+            <span>Mersin Gülnar Saray</span>
+        </div>
+        
+        <div class="price-section">
+            <div class="price-label">Satış Fiyatı</div>
+            <div class="price-amount">20.000.000,00 TRY</div>
+        </div>
+        
+        <div class="polygon-section">
+            <div class="polygon-title">
+                <span class="polygon-icon">🗺️</span>
+                <span>Ada-Parsel Bilgileri</span>
+            </div>
+            <div class="polygon-info">
+                <div class="polygon-item">
+                    <strong>Ada:</strong> 680
+                </div>
+                <div class="polygon-item">
+                    <strong>Parseller:</strong> 5
+                </div>
+                <div class="polygon-item">
+                    <strong>Toplam Alan:</strong> 32,255 m²
+                </div>
+            </div>
+            
+            <div class="polygon-visualization">
+                <div class="polygon-title-visual">🗺️ Parsel Konumu - Interaktif Harita</div>
+                <div id="map" class="leaflet-map"></div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-text">Emlak Drone uygulamasından paylaşıldı</div>
+        </div>
+    </div>
+    
+    <script>
+        let map;
+        
+        function initMap() {
+            // Türkiye sınırları
+            const TURKEY_BOUNDS = [
+                [35.0, 25.0], // SW
+                [42.8, 45.0], // NE
+            ];
+            
+            // Harita oluştur
+            map = L.map('map', { 
+                maxBounds: TURKEY_BOUNDS, 
+                maxBoundsViscosity: 1.0, 
+                minZoom: 5, 
+                maxZoom: 18 
+            }).setView([39.9334, 32.8597], 6);
+            
+            // Google Satellite tile layer (MapView'deki gibi)
+            L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', { 
+                attribution: '', 
+                maxZoom: 18 
+            }).addTo(map);
+            
+            // Leaflet attribution'ı gizle
+            map.attributionControl.setPrefix('');
+            
+            // Parsel koordinatlarını al
+            const parseller = [{"parselNo":"5","alan":"32.255,07","coordinates":{"lat":36.353248666666666,"lng":33.41297433333333},"parselCoordinates":[{"latitude":36.35434,"longitude":33.41257,"_id":"6935adf1e1750e589857ed16"},{"latitude":36.35413,"longitude":33.41261,"_id":"6935adf1e1750e589857ed17"},{"latitude":36.35388,"longitude":33.41278,"_id":"6935adf1e1750e589857ed18"},{"latitude":36.35375,"longitude":33.41286,"_id":"6935adf1e1750e589857ed19"},{"latitude":36.35366,"longitude":33.41267,"_id":"6935adf1e1750e589857ed1a"},{"latitude":36.35357,"longitude":33.41239,"_id":"6935adf1e1750e589857ed1b"},{"latitude":36.35347,"longitude":33.41219,"_id":"6935adf1e1750e589857ed1c"},{"latitude":36.3533,"longitude":33.41212,"_id":"6935adf1e1750e589857ed1d"},{"latitude":36.35295,"longitude":33.41211,"_id":"6935adf1e1750e589857ed1e"},{"latitude":36.35267,"longitude":33.41218,"_id":"6935adf1e1750e589857ed1f"},{"latitude":36.35265,"longitude":33.41223,"_id":"6935adf1e1750e589857ed20"},{"latitude":36.35257,"longitude":33.41248,"_id":"6935adf1e1750e589857ed21"},{"latitude":36.35224,"longitude":33.41254,"_id":"6935adf1e1750e589857ed22"},{"latitude":36.3518,"longitude":33.41285,"_id":"6935adf1e1750e589857ed23"},{"latitude":36.35186,"longitude":33.41312,"_id":"6935adf1e1750e589857ed24"},{"latitude":36.35201,"longitude":33.41315,"_id":"6935adf1e1750e589857ed25"},{"latitude":36.35245,"longitude":33.41279,"_id":"6935adf1e1750e589857ed26"},{"latitude":36.35289,"longitude":33.41267,"_id":"6935adf1e1750e589857ed27"},{"latitude":36.35288,"longitude":33.4132,"_id":"6935adf1e1750e589857ed28"},{"latitude":36.3527,"longitude":33.41372,"_id":"6935adf1e1750e589857ed29"},{"latitude":36.3525,"longitude":33.4139,"_id":"6935adf1e1750e589857ed2a"},{"latitude":36.35275,"longitude":33.41396,"_id":"6935adf1e1750e589857ed2b"},{"latitude":36.35317,"longitude":33.41397,"_id":"6935adf1e1750e589857ed2c"},{"latitude":36.35357,"longitude":33.41399,"_id":"6935adf1e1750e589857ed2d"},{"latitude":36.35362,"longitude":33.41399,"_id":"6935adf1e1750e589857ed2e"},{"latitude":36.35395,"longitude":33.41407,"_id":"6935adf1e1750e589857ed2f"},{"latitude":36.35474,"longitude":33.41395,"_id":"6935adf1e1750e589857ed30"},{"latitude":36.35458,"longitude":33.41306,"_id":"6935adf1e1750e589857ed31"},{"latitude":36.35447,"longitude":33.41254,"_id":"6935adf1e1750e589857ed32"},{"latitude":36.35434,"longitude":33.41257,"_id":"6935adf1e1750e589857ed33"}],"_id":"6935adf1e1750e589857ed15"}];
+            const colors = ['#ffd200', '#007AFF', '#00FF00', '#FF6B35', '#9C27B0'];
+            
+            let bounds = [];
+            
+            parseller.forEach((parsel, index) => {
+                const coords = parsel.parselCoordinates;
+                if (coords && coords.length >= 3) {
+                    // Koordinatları Leaflet formatına çevir [lat, lng]
+                    const latLngs = coords.map(coord => [coord.latitude, coord.longitude]);
+                    bounds.push(...latLngs);
+                    
+                    const color = colors[index % colors.length];
+                    
+                    // Polygon oluştur
+                    const polygon = L.polygon(latLngs, {
+                        color: color,
+                        fillColor: color,
+                        fillOpacity: 0.3,
+                        weight: 2
+                    }).addTo(map);
+                    
+                    // Parsel numarası için marker ekle
+                    const center = polygon.getBounds().getCenter();
+                    L.marker(center, {
+                        icon: L.divIcon({
+                            className: 'parsel-marker',
+                            html: `<div style="background: ${color}; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold;">${parsel.parselNo}</div>`,
+                            iconSize: [20, 20],
+                            iconAnchor: [10, 10]
+                        })
+                    }).addTo(map);
+                }
+            });
+            
+            // Haritayı tüm parselleri gösterecek şekilde ayarla
+            if (bounds.length > 0) {
+                map.fitBounds(bounds, { padding: [20, 20], maxZoom: 16 });
+            }
+        }
+        
+        // DOM yüklendiğinde haritayı başlat
+        document.addEventListener('DOMContentLoaded', initMap);
+    </script>
+</body>
+</html>
